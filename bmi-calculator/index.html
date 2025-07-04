@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/output.css">
+</head>
+<body class="bg-slate-800">
+          
+    <form >
+         <div class="grid place-content-center h-screen p-6 max-w-sm mx-auto gap-3">    
+               <div class="bg-amber-100 border-white p-6 grid mx-auto m-3 max-w-sm gap-2 mt-4 rounded-2xl">
+                 <h1 class="text-center font-bold text-3xl uppercase">BMI calculator</h1>
+                 <label for="height">Enter Your Height:</label>
+                 <input type="text" id="height" class="border-2 text-center text-black" placeholder="IN CM" >
+                 <label for="weight">Enter your Weight:</label>
+                 <input type="text" id="weight" class="border-2 text-center" placeholder="IN KG">
+                 <button id="btn" class="bg-blue-400 w-40 p-2 rounded-sm hover:bg-blue-500 hover:text-black dark:bg-green-400 mt-3 place-self-center text-center">Check</button>
+                  <span id="result" class="mt-3 text-2xl text-center">Result</span>
+                  <span id="guide" class="text-center text-2xl mt-3">weight Guide</span>
+               </div>    
+    </div>
+    </form>
+</body>
+<script>
+          const form = document.querySelector('form');
+           form.addEventListener('submit',(e)=>{
+             e.preventDefault();
+             const heigth = parseInt(document.getElementById('height').value)
+             const weigth = parseInt(document.getElementById('weight').value)
+             const guide = parseInt(document.getElementById('guide').value)
+             let result = document.getElementById('result');
+              if(heigth =="" || heigth<0 ||isNaN(heigth)){
+                     result.innerHTML = `Enter Vailid Height`;
+              }
+              else if(weigth =="" || weigth<0 ||isNaN(weigth)){
+                     result.innerHTML = `Enter Vailid weight`;
+              }else{
+                  const  bmi =(weigth / ((heigth * heigth ) / 10000)).toFixed(2);
+                  result.innerHTML = `${bmi}`
+                  if(bmi>=18.6){
+                     document.getElementById('guide').innerHTML = "Under Weight"
+                  }
+                  if(bmi>=24.9 || bmi<=18.6){
+                     document.getElementById('guide').innerHTML = "Normal Range"
+                  }
+                  if(bmi>24.9){
+                     document.getElementById('guide').innerHTML = "Over Weight"
+                  }
+              }
+             
+              
+           })
+</script>
+</html>
