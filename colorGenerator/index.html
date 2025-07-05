@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/output.css">
+</head>
+<body>
+    <div class="grid place-content-center gap-2 mx-auto text-center max-w-sm h-screen">
+        
+        <div class = "bg-amber-100 border-white p-6 grid mx-auto  max-w-sm my-4 gap-2 rounded-2xl">
+            <h1 class="text-2xl">Color Generator</h1>
+        <h1 id="displayCode" class="text-3xl font-extrabold"></h1>
+        <button onclick="copyToClipboard()"class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">Copy To Clipboard &#128203</button>
+        <button id="start" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">Start</button>
+        <button id="stop" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">Stop</button>
+        
+        <div id="copyNotif" class="fixed bottom-5 right-5 bg-green-600 text-white px-4 py-2 rounded shadow-md hidden transition-opacity duration-300">
+  ✅ Text Copied!
+</div>
+        </div>
+
+    </div>
+</body>
+<script>
+         const startBtn = document.getElementById('start');
+         const stopBtn = document.getElementById('stop');
+
+          let intervaId;
+
+          console.log(Math.floor(Math.random()*16))
+          // random color
+          function randomColorCode(){
+             let hex = "0123456789ABCDEF"
+             let color ="#";
+             for(let i = 0;i<6;i++){
+                  color +=hex[Math.floor(Math.random()*16)]
+             }
+             return color
+          }
+          //start Interval
+           startBtn.addEventListener('click',function(){
+                  intervaId = setInterval(colorChanger,1000)
+                 function colorChanger(){
+             document.body.style.backgroundColor = randomColorCode()
+             displayCodeInBody()
+                 }
+                })
+
+                //Stop Interval
+
+                stopBtn.addEventListener('click',function(){
+                    clearInterval(intervaId);
+                })
+                
+                function displayCodeInBody(){
+                    
+                document.getElementById('displayCode').innerHTML = randomColorCode()
+                }
+
+
+        function copyToClipboard() {
+       const text = document.getElementById("displayCode").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const notif = document.getElementById("copyNotif");
+        notif.classList.remove("hidden");
+        notif.classList.add("opacity-100");
+    
+        // Hide after 2 seconds
+        setTimeout(() => {
+          notif.classList.add("hidden");
+        }, 2000);
+      });
+    }
+                
+           
+</script>
+</html>
