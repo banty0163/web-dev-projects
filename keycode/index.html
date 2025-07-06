@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/output.css">
+</head>
+<body>
+    <div id="box" class=" place-content-center grid mx-auto h-screen bg-[#414141]">
+      <h1 class="text-center text-white text-3xl mb-4 font-bold font uppercase">Press any Key </h1>
+          <div class="p-6 bg-amber-50 border-1 rounded-2xl ">
+            <table class=" table-auto border-collapse border border-gray-300 w-full">
+              <thead>                 <tr>
+                <th class="border border-e-black px-4 py-2 text-left">code</th>
+                <th class="border border-e-black px-4 py-2 text-left">KeyCode</th>
+                <th class="border border-e-black px-4 py-2 text-left">Code</th>
+             </tr>
+             </thead>
+           <tbody>
+             <tr class="hover:bg-gray-50 text-center text-2xl">
+                <td id="code1" class=" border  border-e-black py-2 px-4"></td>
+                <td id="keycodes" class=" border border-e-black px-4 py-2"></td>
+                <td id="code2" class=" border border-e-black px-4 py-2"></td>
+             </tr>
+             </tbody>
+            </table>
+          </div>
+       
+
+        </tabl>
+    </div>
+    
+</body>
+<script> 
+     const box = document.querySelector('#box');
+     const code1 = document.getElementById('code1')
+     const code2 = document.getElementById('code2')
+     const keycodes = document.getElementById('keycodes')
+     window.addEventListener('keydown',function(e){
+               code1.innerHTML = `${e.key === ' ' ? 'space':e.key}`
+               code2.innerHTML = e.code
+               keycodes.innerHTML = e.keyCode
+                
+            
+     })
+     
+</script>
+</html>
